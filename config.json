@@ -1,0 +1,3 @@
+{
+    "DatabaseURL": "postgres://adminpostgresql:Luiscoco123456@postgresqlserver1974.postgres.database.azure.com:5432/postgresqldb?sslmode=require"
+}
