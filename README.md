@@ -243,5 +243,26 @@ If there's an error in starting the server, it logs the error and terminates.
 
 In summary, this Go application loads its configuration, initializes a database, sets up HTTP routing using Gorilla Mux, and starts an HTTP server to handle requests for the /items endpoint with a GET method.
 
-### 2.2. 
+### 2.2. config.go and config.json files
+
+
+### 2.3. database.go file
+
+
+### 2.4. items_controller.go file
+
+
+### 2.5. item.go
+
+
+### 2.6. How to load the dependencies
+
+
+
+
+
+
+
+
+
 
