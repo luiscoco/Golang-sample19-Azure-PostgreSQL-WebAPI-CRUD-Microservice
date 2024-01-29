@@ -849,6 +849,8 @@ We cannot forget to press the **Save** button to apply the new FireWall rule
 
 ### 2.8. Run and test the application
 
+**IMPORTANT NOTE**: please place your go application in the path **C:\Program Files\Go\src\go_application** to avoid any dependencies error
+
 To run and test a Go application, you can use the **go run** and **go test** commands, respectively. Here's how to use them:
 
 **Running the Application**:
