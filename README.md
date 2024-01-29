@@ -732,8 +732,42 @@ In summary, the **GetAllItems** function in the models package is designed to qu
 
 This function encapsulates the logic for data retrieval, abstracting the database interaction away from other parts of the application
 
-### 2.6. How to load the dependencies
+### 2.6. Create the go.mod file
 
+To initialize a new go.mod file for a Go project in Visual Studio Code (VSCode), you can use the Go command line tool. The go.mod file is used to define the module's properties, including its dependencies. Here's how you can do it:
+
+Open the Integrated Terminal in VSCode: You can do this by using the shortcut Ctrl + `` (backtick) or by going to View>Terminal` in the menu bar.
+
+Navigate to Your Project Directory: If your terminal isn't already in your project directory, use the cd command to navigate to it. For example:
+
+sh
+Copy code
+cd path/to/your/project
+Initialize the go.mod File: Run the following command to initialize a go.mod file in your project directory:
+
+sh
+Copy code
+go mod init your-module-name
+Replace your-module-name with the name you want to give to your module. This is typically the repository URL, but it can be any name if you're not planning to publish the module. For example, if your module's repository URL is github.com/username/project, you would use:
+
+sh
+Copy code
+go mod init github.com/username/project
+After running this command, a go.mod file will be created in your project directory. This file will track your project's dependencies. Remember that for Go modules to work properly, the project should be outside of your GOPATH, or you should have environment variable GO111MODULE set to on.
+
+
+### 2.7. Create the go.sum file
+
+```
+
+```
+
+### 2.8. Run and test the application
+
+
+```
+
+```
 
 
 
