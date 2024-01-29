@@ -786,9 +786,23 @@ go version
 
 ### 2.7. Create the go.sum file
 
-```
+The **go.sum** file is automatically created and updated by the Go toolchain when you **add dependencies** to your project
+
+This file contains **cryptographic checksums** of the content of specific versions of **modules** that you are using in your project
+
+It ensures that the module you use in your project has not been altered. You typically do not create this file manually
+
+To generate the **go.sum** file, you first need to have a **go.mod** file in your project
+
+Once you have initialized your module with go mod init, you can generate the go.sum file by adding a dependency or by running any Go command that modifies dependencies, such as go build, go test, or go mod tidy.
+
+Here's how you can generate the go.sum file with go mod tidy, which will also clean up any unused dependencies:
 
 ```
+go mod tidy
+```
+
+When you run this command, Go will automatically download the necessary dependencies for your project, update the go.mod file with the appropriate requirements, and create or update the go.sum file with their checksums.
 
 ### 2.8. Run and test the application
 
