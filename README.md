@@ -245,6 +245,142 @@ In summary, this Go application loads its configuration, initializes a database,
 
 ### 2.2. config.go and config.json files
 
+```go
+package util
+
+import (
+    "encoding/json"
+    "os"
+)
+
+type Config struct {
+    DatabaseURL string `json:"DatabaseURL"`
+}
+
+func LoadConfig(path string) (*Config, error) {
+    configFile, err := os.Open(path)
+    if err != nil {
+        return nil, err
+    }
+    defer configFile.Close()
+
+    var config Config
+    jsonParser := json.NewDecoder(configFile)
+    err = jsonParser.Decode(&config)
+    if err != nil {
+        return nil, err
+    }
+
+    return &config, nil
+}
+```
+
+This code snippet is a Go **package** named **util** and it primarily deals with loading configuration settings from a JSON file. Let's break it down:
+
+**Package Declaration**:
+
+```go
+package util
+```
+
+This line declares the package name as util. This package is meant to provide utility functions, which can be used across the application.
+
+**Imports**:
+
+```go
+Copy code
+import (
+    "encoding/json"
+    "os"
+)
+```
+
+This block **imports two packages**:
+
+**encoding/json** for JSON encoding and decoding,
+
+**os** for interacting with the operating system, like opening files.
+
+**Config Struct**:
+
+```go
+type Config struct {
+    DatabaseURL string `json:"DatabaseURL"`
+}
+```
+
+This defines a struct named Config with a single field DatabaseURL. 
+
+The json:"DatabaseURL" part is a field tag used by the json package to map this field to the DatabaseURL key in a JSON object.
+
+**LoadConfig Function**:
+
+```go
+func LoadConfig(path string) (*Config, error) {
+    ...
+}
+```
+
+**LoadConfig** is a function that takes a file path as a string and returns a pointer to a **Config** struct and an error.
+
+It is designed to load configuration data from a JSON file whose path is provided as an argument.
+
+**Opening the Configuration File**:
+
+```go
+configFile, err := os.Open(path)
+if err != nil {
+    return nil, err
+}
+defer configFile.Close()
+```
+
+The function attempts to open the file at the given path using **os.Open**
+
+If there is an error in opening the file (e.g., file does not exist), it returns nil and the error
+
+**defer configFile.Close()** schedules the closing of the file when the function exits 
+
+This is important for resource management and to prevent file descriptor leaks
+
+**Decoding the JSON File**:
+
+```go
+var config Config
+jsonParser := json.NewDecoder(configFile)
+err = jsonParser.Decode(&config)
+if err != nil {
+    return nil, err
+}
+```
+
+It creates a variable config of type Config.
+
+A JSON decoder is created for the opened file.
+
+The decoder then tries to decode the JSON content of the file into the config variable.
+
+If there's an error during decoding (e.g., if the JSON structure doesn't match the Config struct), it returns nil and the error.
+
+**Returning the Config Data**:
+
+```go
+return &config, nil
+```
+
+Finally, if everything goes well, the function returns a pointer to the config struct filled with data from the JSON file, and a nil error
+
+In summary, this code provides a utility function LoadConfig to load and parse configuration data from a JSON file into a Config struct
+
+It handles file operations and JSON parsing, returning the parsed configuration and any errors encountered in the process
+
+We also input the database connection string in the **config.json** file
+
+```json
+{
+    "DatabaseURL": "postgres://adminpostgresql:Luiscoco123456@postgresqlserver1974.postgres.database.azure.com:5432/postgresqldb?sslmode=require"
+}
+```
 
 ### 2.3. database.go file
 
