@@ -9,6 +9,7 @@ import (
 )
 
 func main() {
+
     config, err := util.LoadConfig("config.json")
     if err != nil {
         log.Fatalf("Failed to load configuration: %v", err)

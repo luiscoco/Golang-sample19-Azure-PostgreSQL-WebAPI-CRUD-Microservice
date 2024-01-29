@@ -11,7 +11,7 @@ type Item struct {
 
 func GetAllItems(db *sql.DB) ([]Item, error) {
     items := []Item{}
-    rows, err := db.Query("SELECT id, name FROM items")
+    rows, err := db.Query("SELECT * FROM items;")
     if err != nil {
         return nil, err
     }
