@@ -520,39 +520,52 @@ func GetItems(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-This code snippet is part of a Go package named controllers, which appears to be responsible for handling HTTP requests in a web application. The specific function in this snippet is GetItems, which is designed to handle requests for retrieving items. Let's break it down:
+This code snippet is part of a Go package named controllers, which appears to be responsible for handling HTTP requests in a web application
 
-Package Declaration:
+The specific function in this snippet is GetItems, which is designed to handle requests for retrieving items. Let's break it down:
 
-go
-Copy code
+**Package Declaration**:
+
+```go
 package controllers
-This line declares the package name as controllers. This package likely contains functions that act as controllers in the MVC (Model-View-Controller) design pattern.
+```
 
-Imports:
+This line declares the package name as controllers
 
-go
-Copy code
+This package likely contains functions that act as controllers in the MVC (Model-View-Controller) design pattern.
+
+**Imports**:
+
+```go
 import (
     "encoding/json"
     "net/http"
     "go_application/models"
     "go_application/util"
 )
-encoding/json is used for encoding and decoding JSON.
-net/http is used to handle HTTP requests and responses.
-go_application/models is likely a custom package in the application, probably containing data models and business logic.
-go_application/util is another custom package, possibly containing utility functions like database connection handling (as suggested by its usage in the code).
-GetItems Function:
+```
 
-go
-Copy code
+**encoding/json** is used for encoding and decoding JSON
+
+**net/http** is used to handle HTTP requests and responses.
+
+**go_application/models** is likely a custom package in the application, probably containing data models and business logic.
+
+**go_application/util** is another custom package, possibly containing utility functions like database connection handling (as suggested by its usage in the code).
+
+**GetItems Function**:
+
+```go
 func GetItems(w http.ResponseWriter, r *http.Request) {
     ...
 }
-GetItems is an HTTP handler function. It takes two parameters: w (an http.ResponseWriter) for writing the HTTP response, and r (an *http.Request) representing the incoming HTTP request.
+```
+
+**GetItem** is an HTTP handler function. It takes two parameters: w (an http.ResponseWriter) for writing the HTTP response, and r (an *http.Request) representing the incoming HTTP request.
+
 This function is responsible for processing HTTP requests that are intended to retrieve items.
-Database Connection and Retrieval of Items:
+
+**Database Connection and Retrieval of Items**:
 
 go
 Copy code
