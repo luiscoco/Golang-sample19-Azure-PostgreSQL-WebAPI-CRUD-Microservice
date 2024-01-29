@@ -108,3 +108,11 @@ If we click on the **databsename**, after we click on the **Schemas** and the in
 For running a SQL query we click on the **Query Tool** button
 
 ![image](https://github.com/luiscoco/MicroServices_dotNET8_CRUD_WebAPI-Azure-PostgreSQL/assets/32194879/0451248e-fea7-4c05-873c-7c512a1087a4)
+
+### 2. How to Create a Golang WebAPI CRUD Microservice
+
+Run VSCode and create the project folder structure
+
+![image](https://github.com/luiscoco/Golang-sample19-Azure-PostgreSQL-WebAPI-CRUD-Microservice/assets/32194879/74d26dd1-9cc9-4804-96f6-5ebaa824c61f)
+
+
