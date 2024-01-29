@@ -1125,3 +1125,13 @@ We can also verify the deployment with this command
 ```
 kubectl get all
 ```
+
+We can run the application and access to the endpoint
+
+![image](https://github.com/luiscoco/Golang-sample19-Azure-PostgreSQL-WebAPI-CRUD-Microservice/assets/32194879/b18ad019-d802-4048-b2c1-d20e64734be6)
+
+http://localhost/items
+
+![image](https://github.com/luiscoco/Golang-sample19-Azure-PostgreSQL-WebAPI-CRUD-Microservice/assets/32194879/7a7de732-82cf-4055-a169-9ce7e04bcc1c)
+
+
