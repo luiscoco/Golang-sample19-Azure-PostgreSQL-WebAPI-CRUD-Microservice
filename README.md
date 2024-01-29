@@ -804,6 +804,14 @@ go mod tidy
 
 When you run this command, Go will automatically download the necessary dependencies for your project, update the go.mod file with the appropriate requirements, and create or update the go.sum file with their checksums.
 
+### 2.8. Add the Firewall rule in Azure PostgreSQL
+
+In order to grant the access permission to the Azure PostgreSQL database we have to add the FireWall rule for out laptop IP address
+
+![image](https://github.com/luiscoco/Golang-sample19-Azure-PostgreSQL-WebAPI-CRUD-Microservice/assets/32194879/47fe1d01-1b63-40fc-9525-5d6099e4f745)
+
+![image](https://github.com/luiscoco/Golang-sample19-Azure-PostgreSQL-WebAPI-CRUD-Microservice/assets/32194879/f95896d3-929d-48cb-95d8-5c0068fd9f41)
+
 ### 2.8. Run and test the application
 
 To run and test a Go application, you can use the **go run** and **go test** commands, respectively. Here's how to use them:
