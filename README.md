@@ -499,9 +499,59 @@ The use of panic for error handling suggests that any error in connecting to the
 
 ### 2.4. items_controller.go file
 
+```go
+package controllers
+
+import (
+    "encoding/json"
+    "net/http"
+    "go_application/models"
+    "go_application/util"
+)
+
+func GetItems(w http.ResponseWriter, r *http.Request) {
+    db := util.GetDB()
+    items, err := models.GetAllItems(db)
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        return
+    }
+    json.NewEncoder(w).Encode(items)
+}
+```
 
 ### 2.5. item.go
 
+```go
+package models
+
+import (
+    "database/sql"
+)
+
+type Item struct {
+    ID   int    `json:"id"`
+    Name string `json:"name"`
+}
+
+func GetAllItems(db *sql.DB) ([]Item, error) {
+    items := []Item{}
+    rows, err := db.Query("SELECT id, name FROM items")
+    if err != nil {
+        return nil, err
+    }
+    defer rows.Close()
+
+    for rows.Next() {
+        var i Item
+        if err := rows.Scan(&i.ID, &i.Name); err != nil {
+            return nil, err
+        }
+        items = append(items, i)
+    }
+    return items, nil
+}
+```
 
 ### 2.6. How to load the dependencies
 
