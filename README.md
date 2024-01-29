@@ -876,6 +876,15 @@ Remember, for both go run and go test to work, you must be in the directory wher
 
 Additionally, both commands will automatically fetch any missing dependencies and update your go.mod and go.sum files accordingly
 
+We verify the running application
+
+![image](https://github.com/luiscoco/Golang-sample19-Azure-PostgreSQL-WebAPI-CRUD-Microservice/assets/32194879/ad4d043a-8e73-45b2-99f0-b6e88e1faa60)
+
+We access to the application endpoint
+
+http://localhost:8081/items
+
+![image](https://github.com/luiscoco/Golang-sample19-Azure-PostgreSQL-WebAPI-CRUD-Microservice/assets/32194879/0f885936-35a8-4494-93d2-6ff7f2984965)
 
 
 
