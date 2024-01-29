@@ -1,6 +1,6 @@
 # How to create Golang CRUD WebAPI Azure PostgreSQL Microservice and deploy to Docker Desktop and Kubernetes (in your local laptop)
 
-The source code is available in this github: https://github.com/luiscoco/Golang-sample19-Azure-PostgreSQL-WebAPI-CRUD-Microservice
+The source code is available in this github:
 
 https://github.com/luiscoco/Golang-sample19-Azure-PostgreSQL-WebAPI-CRUD-Microservice
 
@@ -1125,3 +1125,13 @@ We can also verify the deployment with this command
 ```
 kubectl get all
 ```
+
+We can run the application and access to the endpoint
+
+![image](https://github.com/luiscoco/Golang-sample19-Azure-PostgreSQL-WebAPI-CRUD-Microservice/assets/32194879/e666793f-aa09-4b7e-a96a-33fa4b082918)
+
+http://localhost/items
+
+![image](https://github.com/luiscoco/Golang-sample19-Azure-PostgreSQL-WebAPI-CRUD-Microservice/assets/32194879/7a7de732-82cf-4055-a169-9ce7e04bcc1c)
+
+
