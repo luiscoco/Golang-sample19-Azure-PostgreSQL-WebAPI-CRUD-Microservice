@@ -75,12 +75,27 @@ CREATE DATABASE postgresqldb
 
 We list the databases and we switch to the "**postgresqldb**" database
 
+Listing databases
+```
+\l
+```
+
+Switching to "**postgresqldb**" database
+
 ```
 \c postgresqldb
 ```
 
+Creating a new "**items**" table
+
 ```psql
 CREATE TABLE items (id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL);
+```
+
+Listing the tables in a database
+
+```plsql
+\dt
 ```
 
 We insert some items in the created table
