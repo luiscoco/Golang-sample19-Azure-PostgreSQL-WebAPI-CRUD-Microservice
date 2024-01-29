@@ -80,20 +80,13 @@ We list the databases and we switch to the "**postgresqldb**" database
 ```
 
 ```psql
-CREATE TABLE items (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
-);
+CREATE TABLE items (id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL);
 ```
 
 We insert some items in the created table
 
 ```psql
-INSERT INTO items (name) VALUES
-('Item 1'),
-('Item 2'),
-('Item 3'),
-('Item 4');
+INSERT INTO items (name) VALUES ('Item 1'), ('Item 2'), ('Item 3'), ('Item 4');
 ```
 
 ![image](https://github.com/luiscoco/Golang-sample19-Azure-PostgreSQL-WebAPI-CRUD-Microservice/assets/32194879/cbbf3372-1579-4673-9439-8e29b6dcbedb)
