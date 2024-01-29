@@ -1008,7 +1008,7 @@ Here are the general steps to deploy your .NET 8 Web API to Kubernetes:
 We start building and pushing the application Docker image to the Docker Hub registry/repo
 
 ```
-docker build -t luiscoco/myapp:latest .
+docker build -t luiscoco/myappgolangmicroservice:latest .
 ```
 
 To verify we created the docker image run the command:
@@ -1020,7 +1020,7 @@ docker images
 Then we use the docker push command to upload the image to the Docker Hub repository:
 
 ```
-docker push luiscoco/myapp:latest
+docker push luiscoco/myappgolangmicroservice:latest
 ```
 
 **Note**: run the "**docker login**" command if you have no access to Docker Hub repo
