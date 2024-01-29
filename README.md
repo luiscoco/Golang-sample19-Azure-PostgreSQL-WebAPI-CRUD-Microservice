@@ -633,54 +633,73 @@ func GetAllItems(db *sql.DB) ([]Item, error) {
 
 This code is a part of the models package in a Go application and defines the functionality for interacting with a database to retrieve a list of Item objects. Let's break down the code:
 
-Package Declaration:
+**Package Declaration**:
 
-go
-Copy code
+```go
 package models
-This line declares that the code belongs to the models package. In the context of an MVC (Model-View-Controller) framework, models typically handle data and business logic.
+```
 
-Imports:
+This line declares that the code belongs to the models package
 
-go
-Copy code
+In the context of an MVC (Model-View-Controller) framework, models typically handle data and business logic
+
+**Imports**:
+
+```go
 import (
     "database/sql"
 )
-This imports the database/sql package, which is a Go standard library package for interacting with SQL databases.
+```
 
-Item Struct:
+This imports the database/sql package, which is a Go standard library package for interacting with SQL databases
 
-go
-Copy code
+**Item Struct**:
+
+```go
 type Item struct {
     ID   int    `json:"id"`
     Name string `json:"name"`
 }
-This defines a struct named Item, which represents an item in the database.
-It has two fields: ID (an integer) and Name (a string).
-The struct tags (e.g., json:"id") indicate how these fields should be encoded and decoded when converting to and from JSON. This is useful when sending/receiving data in JSON format over HTTP.
-GetAllItems Function:
+```
 
-go
-Copy code
+This defines a struct named Item, which represents an item in the database
+
+It has two fields: ID (an integer) and Name (a string)
+
+The struct tags (e.g., json:"id") indicate how these fields should be encoded and decoded when converting to and from JSON
+
+This is useful when sending/receiving data in JSON format over HTTP.
+
+**GetAllItems Function**:
+
+```go
 func GetAllItems(db *sql.DB) ([]Item, error) {
     ...
 }
-GetAllItems is a function that takes a pointer to an sql.DB (representing the database connection) and returns a slice of Item structs and an error.
-This function is responsible for querying the database and returning all items.
-Querying the Database:
+```
 
-go
+**GetAllItems** is a function that takes a pointer to an sql.DB (representing the database connection) and returns a slice of Item structs and an error
+
+This function is responsible for querying the database and returning all items
+
+**Querying the Database**:
+
+```go
 Copy code
 rows, err := db.Query("SELECT id, name FROM items")
 if err != nil {
     return nil, err
 }
 defer rows.Close()
-The database is queried for all rows in the items table, selecting the id and name columns.
-If an error occurs during the query, it returns nil and the error.
+```
+
+The database is queried for all rows in the items table, selecting the id and name columns
+
+If an error occurs during the query, it returns nil and the error
+
+
 defer rows.Close() ensures that the result set (rows) is closed when the function exits. This is important for resource management and avoiding memory leaks.
+
 Iterating Over the Result Set:
 
 go
