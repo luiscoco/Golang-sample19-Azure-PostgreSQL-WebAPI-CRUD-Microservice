@@ -109,11 +109,13 @@ For running a SQL query we click on the **Query Tool** button
 
 ![image](https://github.com/luiscoco/MicroServices_dotNET8_CRUD_WebAPI-Azure-PostgreSQL/assets/32194879/0451248e-fea7-4c05-873c-7c512a1087a4)
 
-### 2. How to Create a Golang WebAPI CRUD Microservice
+## 2. How to Create a Golang WebAPI CRUD Microservice
 
 Run VSCode and create the project folder structure, we create three folder: **controllers**, **models** and **util**
 
 ![image](https://github.com/luiscoco/Golang-sample19-Azure-PostgreSQL-WebAPI-CRUD-Microservice/assets/32194879/187b57af-2c31-47b3-a99f-26f7e2642318)
+
+### 2.1. main.go file
 
 We create then **main.go** file
 
@@ -148,17 +150,19 @@ func main() {
 
 This code snippet is a Go application that sets up a web server. Let's break it down into its main components:
 
-Package Declaration:
+**Package Declaration**:
 
-go
-Copy code
+```go
 package main
-This line declares the package name, which in this case is main. In Go, the main package is special as it defines a standalone executable program, not a library.
+```
 
-Imports:
+This line declares the **package name**, which in this case is **main** 
 
-go
-Copy code
+In Go, the main package is special as it defines a **standalone executable program**, not a library
+
+**Imports**:
+
+```go
 import (
     "log"
     "net/http"
@@ -166,58 +170,78 @@ import (
     "go_application/util"
     "github.com/gorilla/mux"
 )
-This block imports various packages needed for the application:
+```
 
-log for logging,
-net/http for HTTP server and client,
-go_application/controllers and go_application/util likely refer to custom packages within the application for controllers and utility functions,
-github.com/gorilla/mux is an external package for handling HTTP request routing.
-Main Function:
+This block **imports packages** needed for the application:
 
-go
-Copy code
+**log** for logging,
+
+**net/http** for HTTP server and client,
+
+**go_application/controllers** and **go_application/util** likely refer to custom packages within the application for controllers and utility functions,
+
+**github.com/gorilla/mux** is an external package for handling HTTP request routing.
+
+**Main Function:**
+
+```go
 func main() {
     ...
 }
+```
+
 The main function is the entry point of the program. When the program runs, this function is automatically executed.
 
-Configuration Loading:
+**Configuration Loading**:
 
-go
-Copy code
+```go
 config, err := util.LoadConfig("config.json")
 if err != nil {
     log.Fatalf("Failed to load configuration: %v", err)
 }
-Here, the program tries to load configuration settings from a file named config.json using a function LoadConfig from the util package. If an error occurs during loading, the program logs the error and terminates.
+```
 
-Database Initialization:
+Here, the program tries to load configuration settings from a file named **config.json** using a function **LoadConfig** from the util package. 
 
-go
-Copy code
+If an error occurs during loading, the program logs the error and terminates.
+
+**Database Initialization**:
+
+```go
 util.InitDB(config.DatabaseURL)
+```
+
 This line initializes the database using a URL specified in the configuration. It uses the InitDB function from the util package.
 
-Router Setup with Gorilla Mux:
+**Router Setup with Gorilla Mux**:
 
-go
-Copy code
+```go
 r := mux.NewRouter()
 r.HandleFunc("/items", controllers.GetItems).Methods("GET")
-mux.NewRouter() creates a new router using the Gorilla Mux package, which is more powerful and flexible than the default mux provided by net/http.
-r.HandleFunc("/items", controllers.GetItems).Methods("GET") sets up a route. It means that for the HTTP path /items with method GET, the function GetItems from the controllers package will handle the request.
-Starting the HTTP Server:
+```
 
-go
-Copy code
+**mux.NewRouter()** creates a new router using the Gorilla Mux package, which is more powerful and flexible than the default mux provided by net/http.
+
+**r.HandleFunc("/items", controllers.GetItems).Methods("GET")** sets up a route. 
+
+It means that for the HTTP path /items with method GET, the function GetItems from the controllers package will handle the request.
+
+**Starting the HTTP Server**:
+
+```go
 log.Println("Starting server on :8081")
 if err := http.ListenAndServe(":8081", r); err != nil {
     log.Fatalf("Error starting server: %s\n", err)
 }
+```
+
 The server is started on port 8081 using http.ListenAndServe.
+
 It logs a message indicating that the server is starting.
+
 If there's an error in starting the server, it logs the error and terminates.
+
 In summary, this Go application loads its configuration, initializes a database, sets up HTTP routing using Gorilla Mux, and starts an HTTP server to handle requests for the /items endpoint with a GET method.
 
-
+### 2.2. 
 
