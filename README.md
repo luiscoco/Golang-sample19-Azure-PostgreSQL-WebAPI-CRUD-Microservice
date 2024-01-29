@@ -914,6 +914,10 @@ As a prerequisite we have to run the **Docker Desktop** application
 
 We first have to create a **Dockerfile** in the application root
 
+![image](https://github.com/luiscoco/Golang-sample19-Azure-PostgreSQL-WebAPI-CRUD-Microservice/assets/32194879/fbee099f-e96e-4ae0-8ab0-9675c73dccfe)
+
+This is the **Dockerfile** code
+
 ```
 # Start from a Debian-based image with the latest version of Go installed
 FROM golang:latest
