@@ -749,15 +749,26 @@ cd path/to/your/project
 Initialize the **go.mod** File. Run the following command to initialize a go.mod file in your project directory:
 
 ```
-go mod init go
+go mod init go-azure-postgresql-microservice
 ```
 
-Replace your-module-name with the name you want to give to your module. This is typically the repository URL, but it can be any name if you're not planning to publish the module. For example, if your module's repository URL is github.com/username/project, you would use:
+Replace **your-module-name** with the name you want to give to your module
 
-sh
-Copy code
+This is typically the **repository URL**, but it can be any name if you're not planning to publish the module
+
+For example, if your module's repository URL is **github.com/username/project**, you would use:
+
+```
 go mod init github.com/username/project
-After running this command, a go.mod file will be created in your project directory. This file will track your project's dependencies. Remember that for Go modules to work properly, the project should be outside of your GOPATH, or you should have environment variable GO111MODULE set to on.
+```
+
+After running this command, a go.mod file will be created in your project directory
+
+This file will track your project's dependencies
+
+Remember that for Go modules to work properly, the project should be outside of your**GOPATH**, or you should have environment variable **GO111MODULE** set to on
+
+We verify the go.mod file code
 
 ```mod
 module go_application
