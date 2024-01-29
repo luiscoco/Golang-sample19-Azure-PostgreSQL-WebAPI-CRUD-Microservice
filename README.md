@@ -810,7 +810,9 @@ In order to grant the access permission to the Azure PostgreSQL database we have
 
 ![image](https://github.com/luiscoco/Golang-sample19-Azure-PostgreSQL-WebAPI-CRUD-Microservice/assets/32194879/47fe1d01-1b63-40fc-9525-5d6099e4f745)
 
-![image](https://github.com/luiscoco/Golang-sample19-Azure-PostgreSQL-WebAPI-CRUD-Microservice/assets/32194879/f95896d3-929d-48cb-95d8-5c0068fd9f41)
+![image](https://github.com/luiscoco/Golang-sample19-Azure-PostgreSQL-WebAPI-CRUD-Microservice/assets/32194879/d6b27cb3-a912-4f40-80d7-21e15b6da851)
+
+We cannot forget to press the **Save** button to apply the new FireWall rule
 
 ### 2.8. Run and test the application
 
