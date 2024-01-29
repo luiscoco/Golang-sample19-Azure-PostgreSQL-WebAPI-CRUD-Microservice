@@ -774,12 +774,15 @@ We verify the go.mod file code
 module go_application
 
 go 1.21.6
-
-require (
-	github.com/gorilla/mux v1.8.0
-	github.com/lib/pq v1.10.2
-)
 ```
+
+We can verify the current go version with the following command:
+
+```
+go version
+```
+
+![image](https://github.com/luiscoco/Golang-sample19-Azure-PostgreSQL-WebAPI-CRUD-Microservice/assets/32194879/0e7db783-5161-4854-bfaa-17ce83303dd2)
 
 ### 2.7. Create the go.sum file
 
