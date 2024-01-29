@@ -1128,7 +1128,7 @@ kubectl get all
 
 We can run the application and access to the endpoint
 
-![image](https://github.com/luiscoco/Golang-sample19-Azure-PostgreSQL-WebAPI-CRUD-Microservice/assets/32194879/b18ad019-d802-4048-b2c1-d20e64734be6)
+![image](https://github.com/luiscoco/Golang-sample19-Azure-PostgreSQL-WebAPI-CRUD-Microservice/assets/32194879/e666793f-aa09-4b7e-a96a-33fa4b082918)
 
 http://localhost/items
 
