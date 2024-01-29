@@ -1026,3 +1026,87 @@ docker push luiscoco/myappgolangmicroservice:latest
 **Note**: run the "**docker login**" command if you have no access to Docker Hub repo
 
 We create the **deployment.yml** and the **service.yml** files in our project
+
+**deployment.yml**
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myappgolangmicroservice-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myappgolangmicroservice
+  template:
+    metadata:
+      labels:
+        app: myappgolangmicroservice
+    spec:
+      containers:
+      - name: myappgolangmicroservice
+        image: luiscoco/myappgolangmicroservice:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: ConnectionStrings__DefaultConnection
+          value: Host=postgresqlserver1974.postgres.database.azure.com;Database=postgresqldb;Username=adminpostgresql;Port=5432;Password=Luiscoco123456;SSL Mode=Require;Trust Server Certificate=true
+      # Removed volumeMounts section related to the certificate
+```
+
+**service.yml**
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: myappgolangmicroservice-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: myappgolangmicroservice
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+```
+
+We set the current Kubernetes context to Docker Desktop Kubernetes with this command:
+
+```
+kubectl config use-context docker-desktop
+```
+
+Now we can apply both kubernetes manifest files with these commands
+
+```
+kubectl apply -f deployment.yml
+```
+
+and
+
+```
+kubectl apply -f service.yml
+```
+
+We can use the command "**kubectl get services**" to check the **external IP** and port your application is accessible on, if using a LoadBalancer.
+
+Verify the Deployment with the command:
+
+```
+kubectl get deployments
+```
+
+Verify the service status with the command:
+
+```
+kubectl get services
+```
+
+We can also verify the deployment with this command
+
+```
+kubectl get all
+```
