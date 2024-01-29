@@ -1025,6 +1025,12 @@ docker push luiscoco/myappgolangmicroservice:latest
 
 **Note**: run the "**docker login**" command if you have no access to Docker Hub repo
 
+Now, We have to create a **ConfigMap** in your Kubernetes cluster with the contents of your **config.json**:
+
+```
+kubectl create configmap goapplication-config --from-file=config.json
+```
+
 We create the **deployment.yml** and the **service.yml** files in our project
 
 **deployment.yml**
@@ -1033,26 +1039,36 @@ We create the **deployment.yml** and the **service.yml** files in our project
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myappgolangmicroservice-deployment
+  name: goapplication-deployment
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: myappgolangmicroservice
+      app: goapplication
   template:
     metadata:
       labels:
-        app: myappgolangmicroservice
+        app: goapplication
     spec:
       containers:
-      - name: myappgolangmicroservice
+      - name: goapplication
         image: luiscoco/myappgolangmicroservice:latest
         ports:
-        - containerPort: 8080
+        - containerPort: 8081
+        volumeMounts:
+        - name: config-volume
+          mountPath: /app/config.json
+          subPath: config.json
         env:
         - name: ConnectionStrings__DefaultConnection
-          value: Host=postgresqlserver1974.postgres.database.azure.com;Database=postgresqldb;Username=adminpostgresql;Port=5432;Password=Luiscoco123456;SSL Mode=Require;Trust Server Certificate=true
-      # Removed volumeMounts section related to the certificate
+          valueFrom:
+            configMapKeyRef:
+              name: goapplication-config
+              key: config.json
+      volumes:
+      - name: config-volume
+        configMap:
+          name: goapplication-config
 ```
 
 **service.yml**
@@ -1061,16 +1077,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: myappgolangmicroservice-service
+  name: goapplication-service
 spec:
-  type: LoadBalancer
   selector:
-    app: myappgolangmicroservice
+    app: goapplication
   ports:
-    - name: http
-      protocol: TCP
-      port: 80
-      targetPort: 8080
+    - protocol: TCP
+      port: 80  # The port the service is exposed on
+      targetPort: 8081  # The target port on the container
+  type: LoadBalancer  # Use NodePort or ClusterIP for internal-only access
 ```
 
 We set the current Kubernetes context to Docker Desktop Kubernetes with this command:
