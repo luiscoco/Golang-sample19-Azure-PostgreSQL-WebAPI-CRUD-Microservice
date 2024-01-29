@@ -806,11 +806,47 @@ When you run this command, Go will automatically download the necessary dependen
 
 ### 2.8. Run and test the application
 
+To run and test a Go application, you can use the **go run** and **go test** commands, respectively. Here's how to use them:
+
+**Running the Application**:
+
+To run your Go application, you should navigate to the directory containing your **main.go** file (if you are not already there) and use the go run command
+
+This will compile and execute your application
+
+Assuming **main.go** is in the root of your project directory, the command would be:
 
 ```
-
+go run main.go
 ```
 
+This command will compile the **main.go** file and any other files in the same package and run the resulting executable 
+
+If your **main.go** file references other packages within your project (like controllers, models, util), those will be compiled as well
+
+**Testing the Application**:
+
+To test your Go application, you would navigate to the directory containing your tests
+
+If you have test files (***_test.go**) in the same directories as the packages they test, you can run all tests in your project with the following command from the root directory:
+
+```
+go test ./...
+```
+
+The ./... is a pattern that tells the go tool to recursively test all packages in your project
+
+Alternatively, if you want to run tests for a specific package, navigate to the package directory and run:
+
+```
+go test
+```
+
+This command will execute all the test functions in files that end with _test.go within the current package directory
+
+Remember, for both go run and go test to work, you must be in the directory where the files are located, or you need to specify the path to the files you want to run or test
+
+Additionally, both commands will automatically fetch any missing dependencies and update your go.mod and go.sum files accordingly
 
 
 
