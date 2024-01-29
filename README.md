@@ -567,25 +567,36 @@ This function is responsible for processing HTTP requests that are intended to r
 
 **Database Connection and Retrieval of Items**:
 
-go
-Copy code
+```go
 db := util.GetDB()
 items, err := models.GetAllItems(db)
 if err != nil {
     http.Error(w, err.Error(), http.StatusInternalServerError)
     return
 }
-db := util.GetDB() calls the GetDB function from the util package to get a database connection.
-items, err := models.GetAllItems(db) calls a function from the models package, which likely queries the database to retrieve all items. It returns the items and any error that occurred.
-If there's an error (err != nil), the function sends an HTTP error response with status code 500 (Internal Server Error) and returns early from the function.
-Encoding and Sending the Response:
+```
 
-go
-Copy code
+**db := util.GetDB()** calls the GetDB function from the util package to get a database connection
+
+**items, err := models.GetAllItems(db)** calls a function from the models package, which likely queries the database to retrieve all items. It returns the items and any error that occurred
+
+If there's an error (**err != nil**), the function sends an HTTP error response with status code 500 (Internal Server Error) and returns early from the function
+
+**Encoding and Sending the Response**:
+
+```go
 json.NewEncoder(w).Encode(items)
-If no error occurs, the items are encoded into JSON format using json.NewEncoder(w).Encode(items).
-The JSON-encoded items are written to the http.ResponseWriter (w), which sends the data back to the client making the request.
-In summary, this GetItems function is an HTTP handler that interacts with the database to retrieve items and returns them to the client in JSON format. If an error occurs during database interaction, it responds with an HTTP error. This function is part of the application's controller layer, handling the logic for HTTP requests related to items.
+```
+
+If no error occurs, the items are encoded into JSON format using **json.NewEncoder(w).Encode(items)**
+
+The JSON-encoded items are written to the **http.ResponseWriter** (w), which sends the data back to the client making the request
+
+In summary, this GetItems function is an HTTP handler that interacts with the database to retrieve items and returns them to the client in JSON format
+
+If an error occurs during database interaction, it responds with an HTTP error
+
+This function is part of the application's controller layer, handling the logic for HTTP requests related to items
 
 ### 2.5. item.go
 
