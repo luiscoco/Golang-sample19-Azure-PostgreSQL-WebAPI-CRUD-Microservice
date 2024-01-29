@@ -697,13 +697,13 @@ The database is queried for all rows in the items table, selecting the id and na
 
 If an error occurs during the query, it returns nil and the error
 
+```go
+defer rows.Close() ensures that the result set (rows) is closed when the function exits. This is important for resource management and avoiding memory leaks
+```
 
-defer rows.Close() ensures that the result set (rows) is closed when the function exits. This is important for resource management and avoiding memory leaks.
+**Iterating Over the Result Set**:
 
-Iterating Over the Result Set:
-
-go
-Copy code
+```go
 for rows.Next() {
     var i Item
     if err := rows.Scan(&i.ID, &i.Name); err != nil {
@@ -711,17 +711,26 @@ for rows.Next() {
     }
     items = append(items, i)
 }
-The function iterates over each row in the result set.
-For each row, it creates an Item struct (i) and uses rows.Scan to copy the columns from the current row into the struct's fields (i.ID and i.Name).
-If there's an error in scanning, it returns nil and the error.
-The Item struct is then appended to the items slice.
-Returning the Items:
+```
 
-go
-Copy code
+The function iterates over each row in the result set
+
+For each row, it creates an Item struct (i) and uses rows.Scan to copy the columns from the current row into the struct's fields (i.ID and i.Name)
+
+If there's an error in scanning, it returns nil and the error
+
+The Item struct is then appended to the items slice
+
+**Returning the Items**:
+
+```go
 return items, nil
-After processing all rows, the function returns the slice of Item structs.
-In summary, the GetAllItems function in the models package is designed to query a SQL database for all entries in the items table, and it returns these as a slice of Item structs. This function encapsulates the logic for data retrieval, abstracting the database interaction away from other parts of the application.
+```
+After processing all rows, the function returns the slice of Item structs
+
+In summary, the GetAllItems function in the models package is designed to query a SQL database for all entries in the items table, and it returns these as a slice of Item structs
+
+This function encapsulates the logic for data retrieval, abstracting the database interaction away from other parts of the application
 
 ### 2.6. How to load the dependencies
 
