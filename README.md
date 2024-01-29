@@ -807,6 +807,11 @@ We verify the go.mod file code
 module go_application
 
 go 1.21.6
+
+require (
+	github.com/gorilla/mux v1.8.1
+	github.com/lib/pq v1.10.9
+)
 ```
 
 We can verify the current go version with the following command:
@@ -847,7 +852,7 @@ In order to grant the access permission to the Azure PostgreSQL database we have
 
 We cannot forget to press the **Save** button to apply the new FireWall rule
 
-### 2.8. Run and test the application
+### 2.9. Run and test the application
 
 **IMPORTANT NOTE**: please place your go application in the path **C:\Program Files\Go\src\go_application** to avoid any dependencies error
 
@@ -903,9 +908,70 @@ http://localhost:8081/items
 
 ![image](https://github.com/luiscoco/Golang-sample19-Azure-PostgreSQL-WebAPI-CRUD-Microservice/assets/32194879/0f885936-35a8-4494-93d2-6ff7f2984965)
 
+## 3. How to deploy the WebAPI Microservice to Docker Desktop
 
+As a prerequisite we have to run the **Docker Desktop** application
 
+We first have to create a **Dockerfile** in the application root
 
+```
+# Start from a Debian-based image with the latest version of Go installed
+FROM golang:latest
 
+# Set the Current Working Directory inside the container
+WORKDIR /app
 
+# Copy go.mod and go.sum files
+COPY go.mod ./
+COPY go.sum ./
+
+# Download all dependencies. Dependencies will be cached if the go.mod and go.sum files are not changed
+RUN go mod download
+
+# Copy the source from the current directory to the Working Directory inside the container
+COPY . .
+
+# Build the Go app
+RUN go build -o main .
+
+# Expose port 8081 to the outside world
+EXPOSE 8081
+
+# Command to run the executable
+CMD ["./main"]
+```
+
+We have to create a module with the same name as the application folder, in our case we create a module **go_application**
+
+```
+go mod init go_application
+```
+
+After we create the **go.sum** 
+
+```
+go mod tidy command
+```
+
+We create the application **docker image** 
+
+```
+docker build -t my-go-app .
+```
+
+We run the docker container
+
+```
+docker run -p 8081:8081 my-go-app
+```
+
+These are the commands we run in **VSCode Terminal**
+
+![image](https://github.com/luiscoco/Golang-sample19-Azure-PostgreSQL-WebAPI-CRUD-Microservice/assets/32194879/5cfe9d06-758a-477d-a6ec-1d8d8dc0e965)
+
+We can access the application endpoint
+
+http://localhost:8081/items
+
+![image](https://github.com/luiscoco/Golang-sample19-Azure-PostgreSQL-WebAPI-CRUD-Microservice/assets/32194879/d8deef62-3cc2-462d-a5b7-0206f228104f)
 
