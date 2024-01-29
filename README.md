@@ -64,7 +64,7 @@ psql -h postgresqlserver1974.postgres.database.azure.com -d postgres -U adminpos
 
 We **create a database** with this command
 
-```
+```psql
 CREATE DATABASE postgresqldb
     WITH ENCODING 'UTF8'
     LC_COLLATE='en_US.utf8'
@@ -72,6 +72,29 @@ CREATE DATABASE postgresqldb
     TEMPLATE=template0;
 ```
 ![image](https://github.com/luiscoco/MicroServices_dotNET8_CRUD_WebAPI-Azure-PostgreSQL/assets/32194879/6a68ffee-6182-468b-bdce-190f23830501)
+
+We list the databases and we switch to the "**postgresqldb**" database
+
+```
+\c postgresqldb
+```
+
+```psql
+CREATE TABLE items (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
+```
+
+We insert some items in the created table
+
+```psql
+INSERT INTO items (name) VALUES
+('Item 1'),
+('Item 2'),
+('Item 3'),
+('Item 4');
+```
 
 ![image](https://github.com/luiscoco/Golang-sample19-Azure-PostgreSQL-WebAPI-CRUD-Microservice/assets/32194879/cbbf3372-1579-4673-9439-8e29b6dcbedb)
 
