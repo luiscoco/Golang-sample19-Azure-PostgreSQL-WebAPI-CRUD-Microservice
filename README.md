@@ -384,6 +384,118 @@ We also input the database connection string in the **config.json** file
 
 ### 2.3. database.go file
 
+```go
+package util
+
+import (
+    "database/sql"
+    _ "github.com/lib/pq"
+)
+
+var db *sql.DB
+
+func InitDB(dataSourceName string) {
+    var err error
+    db, err = sql.Open("postgres", dataSourceName)
+    if err != nil {
+        panic(err)
+    }
+    if err = db.Ping(); err != nil {
+        panic(err)
+    }
+}
+
+func GetDB() *sql.DB {
+    return db
+}
+```
+
+This code snippet is part of a Go package named **util** that is designed to **initialize** and provide access to a **PostgreSQL** database. Let's break down its components:
+
+**Package Declaration**:
+
+```go
+package util
+```
+
+This line declares the package name as **util**. 
+
+This package is intended to provide utility functions, including those for database interactions
+
+**Imports**:
+
+```go
+Copy code
+import (
+    "database/sql"
+    _ "github.com/lib/pq"
+)
+```
+
+**database/sql** is a Go standard library package that provides a generic interface around SQL (or SQL-like) databases
+
+**_ "github.com/lib/pq"** is an import for the PostgreSQL driver. 
+
+The underscore _ before the import path is used for importing a package solely for its side-effects (in this case, registering the driver with the database/sql package), without directly using any functions or variables from the package in the code.
+
+**Global Variable**:
+
+```go
+var db *sql.DB
+```
+
+This line declares a global variable db of type ***sql.DB**.
+
+This pointer to an sql.DB will represent the database connection pool.
+
+**InitDB Function**:
+
+```go
+func InitDB(dataSourceName string) {
+    var err error
+    db, err = sql.Open("postgres", dataSourceName)
+    if err != nil {
+        panic(err)
+    }
+    if err = db.Ping(); err != nil {
+        panic(err)
+    }
+}
+```
+
+**InitDB** is a function that initializes the database connection.
+
+It takes a dataSourceName string which contains the connection information for the PostgreSQL database.
+
+**sql.Open("postgres", dataSourceName)** attempts to open a database connection with the given data source name. 
+
+It doesn’t immediately establish a connection but prepares the database connection for use.
+
+If there is an error during Open, the function panics (abruptly terminates the program with the error)
+
+**db.Ping()** checks if the database is accessible and also establishes a connection to the database. If it fails, the function again panics
+
+This function sets the global db variable to be used across the application
+
+**GetDB Function**:
+
+```go
+func GetDB() *sql.DB {
+    return db
+}
+```
+
+**GetDB** is a simple function that returns the global db variable
+
+This allows other parts of the application to access the initialized database connection
+
+In summary, this code provides functionality to initialize and access a PostgreSQL database within a Go application
+
+It uses the **database/sql** package and the PostgreSQL driver (**lib/pq**) to manage database connections
+
+The **InitDB** function sets up the connection, and GetDB provides access to this connection
+
+The use of panic for error handling suggests that any error in connecting to the database is considered fatal for the application
 
 ### 2.4. items_controller.go file
 
